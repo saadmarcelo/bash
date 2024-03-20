@@ -16,12 +16,16 @@
 #
 # limpa a tela
 
+DATAHORA=$(date +%H:%M)
+
+
+
 # Função de leitura de data e hora
 clear
 echo "======================== Meu Primeiro Script=================="
 echo ""
-echo -n "Exibir data e hora atual:"
-date
+echo "Exibir data e hora atual: $DATAHORA"
+
 
 # Area de leitura do arquivo hosts
 echo "=============================================================="
