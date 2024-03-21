@@ -17,7 +17,7 @@
 # limpa a tela
 
 DATAHORA=$(date +%H:%M)
-
+ARQETC="/etc/hosts"
 
 
 # Função de leitura de data e hora
@@ -30,4 +30,4 @@ echo "Exibir data e hora atual: $DATAHORA"
 # Area de leitura do arquivo hosts
 echo "=============================================================="
 echo "Lista: "
-sort /etc/hosts
+sort $ARQETC
