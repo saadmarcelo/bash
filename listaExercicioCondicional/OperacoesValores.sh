@@ -25,16 +25,38 @@ read -p "Opção: " OPCAO
 
 case "$OPCAO" in
   1)
-      echo "soma"
+    echo "soma"
+    OP="+"
       ;;
   2)
-      echo "subtração"
+    echo "subtração"
+    OP="-"
       ;;
   3)
+    if [ $VAL1 -eq 0 -o $VAL2 -eq 0 ]
+    then
+      echo "Um valor 0 não pode ser utilizado em uma multiplicação"
+      exit 1
+    fi
     echo "Multi"
+    OP="*"
     ;;
   4)
+    if [ $VAL1 -eq 0 -o $VAL2 -eq 0 ]
+    then
+      echo "Um valor 0 não pode ser utilizado em uma divisão"
+      exit 1
+    fi
+    if [ $(expr $VAL1 % $VAL2) -ne 0 ]
+    then
+      echo "Divisão com Resto = $(expr $VAL1 % VAL2)"
+    else
+      echo "Divisão exata"
+    fi 
+    echo
+
     echo "Div"
+    OP="/"
     ;;
   Q | q)
     echo sair
@@ -45,4 +67,4 @@ case "$OPCAO" in
     exit 2
     ;;
 esac
-echo "Resultado = "
+echo "Resultado $VAL1 $OP $VAL2 = $(expr $VAL1 "$OP" $VAL2)"
