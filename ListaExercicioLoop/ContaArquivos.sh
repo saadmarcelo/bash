@@ -36,4 +36,6 @@ do
   echo "Arquivos MP3: $COUNT_MP3"
   echo "Arquivos MP4: $COUNT_MP4"
 
-done
+done #Fim do For no /home
+
+IFS=$OLDIFS
