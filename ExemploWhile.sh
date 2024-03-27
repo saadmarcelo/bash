@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 
 read -p "Informe o Limete de processos: " MAXIMO
 
