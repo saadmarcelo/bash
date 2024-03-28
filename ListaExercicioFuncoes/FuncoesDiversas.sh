@@ -5,10 +5,10 @@ DATA=$(echo $2| tr -d "/")
 VAL1=$(echo $DATA| cut -c-2)
 VAL2=$(echo $DATA| cut -c3-4)
 VAL3=$(echo $DATA| cut -c5-8)
-
+###########################################
 
 RetornaFormato () {
-  echo "-f"
+  # Funcao que determina se a data esta no formato BR ou US
   if [ $VAL1 -le 12 -a $VAL1 -eq $VAL2 ] # Dia = mes = formato BR
   then
     return 0
@@ -28,7 +28,6 @@ RetornaFormato () {
 
 InverteDiaMes () {
 # Funcao que inverte os valores do dia com o mes e retonra o valor
-  echo "-i"
   RetornaFormato $1
   local FORMATO=$?
   if [ $FORMATO - ne 3 ]
@@ -40,7 +39,7 @@ InverteDiaMes () {
 }
 
 IncluiBarra () {
-  echo "-b"
+  # Função que inclui a barra na data
   RetornaFormato $1
   local FORMATO=$?
   if [ $FORMATO -ne 3 ]
@@ -67,7 +66,7 @@ DataExtenso () {
       ;;
     2)
       local $FORMATO=0
-      until [ "$FORMATO" = 1 -o "$FORMATO" =2  ] 
+      until [ "$FORMATO" = 1 -o "$FORMATO" =2  ] # loop para de escolhad o formato da data caso nao possa ser definido automaticamente
       do
         echo
         echo "Impossível determinar o padrao de data"
@@ -94,7 +93,7 @@ DataExtenso () {
       echo "Formato de data Invalido"
   esac
   
-  case $MES in
+  case $MES in # case para setar o mes Exato 
     01)
       local MESEXT=Janeiro
       ;;
@@ -151,6 +150,7 @@ DataExtenso () {
 }
 
 --help () {
+# Funcao de help
   echo "Uso ./FuncoesDiversas.sh OPÇÃO DATA"
   echo "DATA nos formatos DDMMYYYY ou MMDDYYYY, com ou sem /"
   echo
@@ -160,11 +160,13 @@ DataExtenso () {
   echo "-b = Inclui Barras de Data. Exemplo: de 13081981 para 13/08/1981"
   echo "-e = Exibe a data em formato extenso. Exemplo de 13081918 para 13 de Agosto de 1981"
 }
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ]; then # Valida se passar um parametro caso nao passe nenhum paramentro do comeco ele chama a funcao --help
     --help
     exit 1
 fi
-
+###################
+#inicio do fluxo 
+###################
 case $1 in
   "-f")
     RetornaFormato $2
